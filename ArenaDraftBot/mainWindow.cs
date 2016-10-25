@@ -99,6 +99,30 @@ namespace ArenaDraftBot
             }
             else
             {
+                isDrafting = false;
+                timePick.Enabled = true;
+
+                currentPick = 0;
+                scoreCard1 = 0;
+                scoreCard2 = 0;
+                scoreCard3 = 0;
+                lbCard1.Text = "0";
+                lbCard2.Text = "0";
+                lbCard3.Text = "0";
+
+                btStopDraft.Enabled = false;
+                btStartDraft.Enabled = true;
+
+                pickTimer.Stop();
+                draftTimer.Stop();
+
+                File.WriteAllText("scoreCard1.txt", scoreCard1.ToString());
+                File.WriteAllText("scoreCard2.txt", scoreCard2.ToString());
+                File.WriteAllText("scoreCard3.txt", scoreCard3.ToString());
+                File.WriteAllText("timeLeft.txt", timeLeft.ToString() + " Sekunde(n)");
+
+                twitchClient.SendMessage("Ohh Neeein! Ich verliere die Verbindung ... Abstimmung beendet.");
+
                 twitchClient.LeaveChannel(tbTwitchChannel.Text);               
 
                 btConnect.Enabled = false;
@@ -155,41 +179,84 @@ namespace ArenaDraftBot
                 case "vote":
                     if(isDrafting)
                     {
-                        if (e.Command.ArgumentsAsList.Count > 1 || e.Command.ArgumentsAsList.Count == 0) break;
-                        switch (e.Command.ArgumentsAsList[0])
+                        if(currentPick % 2 == 0)
                         {
-                            case "1":
-                                if(votedUser.Contains(e.Command.ChatMessage.UserId))
-                                {
-                                    twitchClient.SendMessage("@" + e.Command.ChatMessage.DisplayName + "," + "nur eine Stimme pro Pick erlaubt.");
+                            if (e.Command.ArgumentsAsList.Count > 1 || e.Command.ArgumentsAsList.Count == 0) break;
+                            switch (e.Command.ArgumentsAsList[0])
+                            {
+                                case "1":
+                                    if (votedUser.Contains(e.Command.ChatMessage.UserId))
+                                    {
+                                        twitchClient.SendMessage("@" + e.Command.ChatMessage.DisplayName + "," + "nur eine Stimme pro Pick erlaubt.");
+                                        break;
+                                    }
+                                    votedUser.Add(e.Command.ChatMessage.UserId);
+                                    scoreCard1++;
                                     break;
-                                }
-                                votedUser.Add(e.Command.ChatMessage.UserId);
-                                scoreCard1++;
-                                break;
-                            case "2":
-                                if (votedUser.Contains(e.Command.ChatMessage.UserId))
-                                {
-                                    twitchClient.SendMessage("@" + e.Command.ChatMessage.DisplayName + "," + "nur eine Stimme pro Pick erlaubt.");
+                                case "2":
+                                    if (votedUser.Contains(e.Command.ChatMessage.UserId))
+                                    {
+                                        twitchClient.SendMessage("@" + e.Command.ChatMessage.DisplayName + "," + "nur eine Stimme pro Pick erlaubt.");
+                                        break;
+                                    }
+                                    votedUser.Add(e.Command.ChatMessage.UserId);
+                                    scoreCard2++;
                                     break;
-                                }
-                                votedUser.Add(e.Command.ChatMessage.UserId);
-                                scoreCard2++;
-                                break;
-                            case "3":
-                                if (votedUser.Contains(e.Command.ChatMessage.UserId))
-                                {
-                                    twitchClient.SendMessage("@" + e.Command.ChatMessage.DisplayName + "," + "nur eine Stimme pro Pick erlaubt.");
+                                case "3":
+                                    if (votedUser.Contains(e.Command.ChatMessage.UserId))
+                                    {
+                                        twitchClient.SendMessage("@" + e.Command.ChatMessage.DisplayName + "," + "nur eine Stimme pro Pick erlaubt.");
+                                        break;
+                                    }
+                                    votedUser.Add(e.Command.ChatMessage.UserId);
+                                    scoreCard3++;
                                     break;
-                                }
-                                votedUser.Add(e.Command.ChatMessage.UserId);
-                                scoreCard3++;
-                                break;
-                            default:
-                                twitchClient.SendMessage("@" + e.Command.ChatMessage.DisplayName + "," + "nur !vote 1, !vote 2 oder !vote 3 erlaubt.");
-                                break;
+                                default:
+                                    twitchClient.SendMessage("@" + e.Command.ChatMessage.DisplayName + "," + "nur !vote 1, !vote 2 oder !vote 3 erlaubt.");
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            if (e.Command.ArgumentsAsList.Count > 1 || e.Command.ArgumentsAsList.Count == 0) break;
+                            switch (e.Command.ArgumentsAsList[0])
+                            {
+                                case "a":
+                                    if (votedUser.Contains(e.Command.ChatMessage.UserId))
+                                    {
+                                        twitchClient.SendMessage("@" + e.Command.ChatMessage.DisplayName + "," + "nur eine Stimme pro Pick erlaubt.");
+                                        break;
+                                    }
+                                    votedUser.Add(e.Command.ChatMessage.UserId);
+                                    scoreCard1++;
+                                    break;
+                                case "b":
+                                    if (votedUser.Contains(e.Command.ChatMessage.UserId))
+                                    {
+                                        twitchClient.SendMessage("@" + e.Command.ChatMessage.DisplayName + "," + "nur eine Stimme pro Pick erlaubt.");
+                                        break;
+                                    }
+                                    votedUser.Add(e.Command.ChatMessage.UserId);
+                                    scoreCard2++;
+                                    break;
+                                case "c":
+                                    if (votedUser.Contains(e.Command.ChatMessage.UserId))
+                                    {
+                                        twitchClient.SendMessage("@" + e.Command.ChatMessage.DisplayName + "," + "nur eine Stimme pro Pick erlaubt.");
+                                        break;
+                                    }
+                                    votedUser.Add(e.Command.ChatMessage.UserId);
+                                    scoreCard3++;
+                                    break;
+                                default:
+                                    twitchClient.SendMessage("@" + e.Command.ChatMessage.DisplayName + "," + "nur !vote a, !vote b oder !vote c erlaubt.");
+                                    break;
+                            }
                         }
                     }
+                    break;
+                case "dev":
+                    twitchClient.SendMessage("2016 © exceptionptr");
                     break;
                 default:
                     break;
@@ -215,8 +282,7 @@ namespace ArenaDraftBot
             lbCard3.Text = "0";
 
             currentPick++;
-            twitchClient.SendMessage("Stimme jetzt ab mit: !vote 1, !vote 2 oder !vote 3");
-            twitchClient.SendMessage("Pick #" + currentPick);
+            twitchClient.SendMessage("Pick #" + currentPick + " (!vote a, !vote b oder !vote c)");
 
             pickTimer.Start();
             draftTimer.Start();
@@ -244,7 +310,10 @@ namespace ArenaDraftBot
             draftTimer.Start();
 
             currentPick++;
-            twitchClient.SendMessage("Pick #" + currentPick);
+            if(currentPick % 2 == 0)
+                twitchClient.SendMessage("Pick #:" + currentPick + " (!vote 1, !vote 2 oder !vote 3)");
+            else
+                twitchClient.SendMessage("Pick #:" + currentPick + " (!vote a, !vote b oder !vote c)");
 
             btNextPick.Enabled = false;
         }
