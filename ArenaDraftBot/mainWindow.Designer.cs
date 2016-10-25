@@ -260,9 +260,9 @@
             // btStopDraft
             // 
             this.btStopDraft.Enabled = false;
-            this.btStopDraft.Location = new System.Drawing.Point(267, 52);
+            this.btStopDraft.Location = new System.Drawing.Point(266, 52);
             this.btStopDraft.Name = "btStopDraft";
-            this.btStopDraft.Size = new System.Drawing.Size(64, 23);
+            this.btStopDraft.Size = new System.Drawing.Size(65, 23);
             this.btStopDraft.TabIndex = 3;
             this.btStopDraft.Text = "Stop Draft";
             this.btStopDraft.Click += new System.EventHandler(this.btStopDraft_Click);
