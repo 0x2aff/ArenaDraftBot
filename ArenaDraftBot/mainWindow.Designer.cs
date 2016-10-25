@@ -39,6 +39,7 @@
             this.tbBotUsername = new DevExpress.XtraEditors.TextEdit();
             this.lbBotUsername = new DevExpress.XtraEditors.LabelControl();
             this.groupDraft = new DevExpress.XtraEditors.GroupControl();
+            this.lbTimeLeft = new DevExpress.XtraEditors.LabelControl();
             this.btNextPick = new DevExpress.XtraEditors.SimpleButton();
             this.lbCard3 = new System.Windows.Forms.Label();
             this.lbCard2 = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.lbCopyright = new DevExpress.XtraEditors.HyperlinkLabelControl();
             this.pickTimer = new System.Windows.Forms.Timer(this.components);
             this.draftTimer = new System.Windows.Forms.Timer(this.components);
-            this.lbTimeLeft = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupConfig)).BeginInit();
             this.groupConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbTwitchChannel.Properties)).BeginInit();
@@ -168,6 +168,14 @@
             this.groupDraft.Size = new System.Drawing.Size(375, 230);
             this.groupDraft.TabIndex = 1;
             this.groupDraft.Text = "Draft";
+            // 
+            // lbTimeLeft
+            // 
+            this.lbTimeLeft.Location = new System.Drawing.Point(9, 209);
+            this.lbTimeLeft.Name = "lbTimeLeft";
+            this.lbTimeLeft.Size = new System.Drawing.Size(59, 13);
+            this.lbTimeLeft.TabIndex = 12;
+            this.lbTimeLeft.Text = "Time left: 0s";
             // 
             // btNextPick
             // 
@@ -302,7 +310,7 @@
             this.lbVersion.Name = "lbVersion";
             this.lbVersion.Size = new System.Drawing.Size(36, 13);
             this.lbVersion.TabIndex = 2;
-            this.lbVersion.Text = "v.0.0.1";
+            this.lbVersion.Text = "v.0.0.2";
             // 
             // lbCopyright
             // 
@@ -322,14 +330,6 @@
             // draftTimer
             // 
             this.draftTimer.Tick += new System.EventHandler(this.draftTimer_Tick);
-            // 
-            // lbTimeLeft
-            // 
-            this.lbTimeLeft.Location = new System.Drawing.Point(9, 209);
-            this.lbTimeLeft.Name = "lbTimeLeft";
-            this.lbTimeLeft.Size = new System.Drawing.Size(59, 13);
-            this.lbTimeLeft.TabIndex = 12;
-            this.lbTimeLeft.Text = "Time left: 0s";
             // 
             // mainWindow
             // 
