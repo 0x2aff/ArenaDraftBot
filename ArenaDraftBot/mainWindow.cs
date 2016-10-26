@@ -340,7 +340,7 @@ namespace ArenaDraftBot
             File.WriteAllText("scoreCard1.txt", scoreCard1.ToString());
             File.WriteAllText("scoreCard2.txt", scoreCard2.ToString());
             File.WriteAllText("scoreCard3.txt", scoreCard3.ToString());
-            File.WriteAllText("timeLeft.txt", "Pick-Time: " timeLeft.ToString() + " Sekunde(n)");
+            File.WriteAllText("timeLeft.txt", "Pick-Time: " + timeLeft.ToString() + " Sekunde(n)");
 
             if (currentPick % 2 == 0)
             {
@@ -407,19 +407,19 @@ namespace ArenaDraftBot
                 File.WriteAllText("scoreCard1.txt", scoreCard1.ToString());
                 File.WriteAllText("scoreCard2.txt", scoreCard2.ToString());
                 File.WriteAllText("scoreCard3.txt", scoreCard3.ToString());
-                File.WriteAllText("timeLeft.txt", "Pick-Time: " timeLeft.ToString() + " Sekunde(n)");
+                File.WriteAllText("timeLeft.txt", "Pick-Time: " + timeLeft.ToString() + " Sekunde(n)");
 
                 if (currentPick % 2 == 0)
                 {
-                    File.WriteAllText("labelCard1", "1");
-                    File.WriteAllText("labelCard2", "2");
-                    File.WriteAllText("labelCard3", "3");
+                    File.WriteAllText("labelCard1.txt", "1");
+                    File.WriteAllText("labelCard2.txt", "2");
+                    File.WriteAllText("labelCard3.txt", "3");
                 } 
                 else
                 {
-                    File.WriteAllText("labelCard1", "a");
-                    File.WriteAllText("labelCard2", "b");
-                    File.WriteAllText("labelCard3", "c");
+                    File.WriteAllText("labelCard1.txt", "a");
+                    File.WriteAllText("labelCard2.txt", "b");
+                    File.WriteAllText("labelCard3.txt", "c");
                 }
             }
         }
