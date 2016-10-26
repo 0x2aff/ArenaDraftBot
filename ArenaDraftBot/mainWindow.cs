@@ -389,10 +389,13 @@ namespace ArenaDraftBot
 
         private void draftTimer_Tick(object sender, EventArgs e)
         {
-            File.WriteAllText("scoreCard1.txt", scoreCard1.ToString());
-            File.WriteAllText("scoreCard2.txt", scoreCard2.ToString());
-            File.WriteAllText("scoreCard3.txt", scoreCard3.ToString());
-            File.WriteAllText("timeLeft.txt", timeLeft.ToString() + " Sekunde(n)");
+            if(isPicking)
+            {
+                File.WriteAllText("scoreCard1.txt", scoreCard1.ToString());
+                File.WriteAllText("scoreCard2.txt", scoreCard2.ToString());
+                File.WriteAllText("scoreCard3.txt", scoreCard3.ToString());
+                File.WriteAllText("timeLeft.txt", timeLeft.ToString() + " Sekunde(n)");
+            }
         }
     }
 }
