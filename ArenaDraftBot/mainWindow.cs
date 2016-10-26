@@ -256,7 +256,7 @@ namespace ArenaDraftBot
                     }
                     break;
                 case "dev":
-                    twitchClient.SendMessage("2016 © exceptionptr");
+                    twitchClient.SendMessage("Ich wurde im Jahr 2016 von @exceptionptr programmiert.");
                     break;
                 default:
                     break;
